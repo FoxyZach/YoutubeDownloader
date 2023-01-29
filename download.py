@@ -1,4 +1,8 @@
 from tkinter import *
+import time
+import sys 
+import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 from moviepy import *
 from moviepy.video.fx.accel_decel import accel_decel
@@ -39,12 +43,8 @@ from moviepy.audio.fx.audio_normalize import audio_normalize
 from moviepy.audio.fx.volumex import volumex
 from moviepy.editor import VideoFileClip
 from pytube import YouTube
-from tkinter import *
-from tkinter import filedialog
-from moviepy import *
-from moviepy.editor import VideoFileClip
-from pytube import YouTube
-
+import webbrowser
+import tkinter as tk
 import shutil
 
 #Functions
@@ -73,13 +73,15 @@ canvas = Canvas(screen, width=500, height=500)
 canvas.pack()
 
 #link field
-link_logo = Label(screen, text="YouTube", font=('Arial', 50))
+link_bar = Label(screen, text=" ")
+link_logo = Label(screen, text="YouTube", font=('Bold', 50))
 link_field = Entry(screen, width=40, font=('Arial', 15) )
 link_label = Label(screen, text="Enter Download Link: ", font=('Arial', 15))
 link_description1 = Label(screen, text="Program May Freeze While Downloading!", font=('Arial', 10))
 link_description2 = Label(screen, text="Longer Video Duration = Longer Downloading Time", font=('Arial', 10))
 link_creds = Label(screen, text="Made By Zach", font=('Arial', 10))
-link_github = Label(screen, text="https://github.com/FoxyZach", font=('Arial', 10))
+link_github = Label(screen, text="Source Code", fg='blue', cursor = 'hand2', font=('Arial', 10))
+link_youtube = Label(screen, text="My Youtube Channel", fg='blue', cursor = 'hand2', font=('Arial', 10))
 
 #Select Path for saving the file
 path_label = Label(screen, text="Select Path For Download", font=('Arial', 15))
@@ -94,8 +96,15 @@ canvas.create_window(250, 183, window=link_description2)
 canvas.create_window(250, 160, window=link_description1)
 canvas.create_window(250, 135, window=link_label)
 canvas.create_window(250, 220, window=link_field)
-canvas.create_window(8, 475, window=link_creds)
-canvas.create_window(88, 494, window=link_github)
+canvas.create_window(65, 455, window=link_creds)
+canvas.create_window(65, 474, window=link_github)
+canvas.create_window(65, 494, window=link_youtube)
+
+#Link
+link_github.bind('<Button-1>',
+lambda x:webbrowser.open_new("https://github.com/FoxyZach/YoutubeDownloader"))
+link_youtube.bind('<Button-1>',
+lambda x:webbrowser.open_new("https://www.youtube.com/channel/UCYYSXMJWKSRQqcvzazV0jAA"))
 
 #Download btns
 download_btn = Button(screen, text="Download Video",bg='green', padx='22', pady='5',font=('Arial', 15), fg='#fff', command=download_file)
